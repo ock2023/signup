@@ -1,0 +1,106 @@
+body {
+  margin: 0px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  height: 950px;
+  width: 400px;
+  border: solid 3px #f1bb79;
+  border-radius: 12px;
+}
+
+.form {
+  position: relative;
+  top: 20px;
+}
+
+.input-label {
+  margin-bottom: 10px;
+  margin-top: 45px;
+  font-weight: bold;
+}
+
+input:focus,
+.birth:focus {
+  border: none;
+  outline: 2px solid #f76a3f;
+}
+
+.input,
+.birth,
+button {
+  height: 40px;
+  border: solid 2px #f1bb79;
+  background-color: #fbf5e7;
+  border-radius: 12px;
+}
+
+.input {
+  width: 330px;
+}
+
+.birth {
+  width: 109px;
+}
+
+form {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  color: #f1a64a;
+  border-bottom: solid 1.5px #f1bb79;
+  padding-bottom: 35px;
+  padding-top: 35px;
+}
+
+button {
+  background-color: #f1bb79;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ec9832;
+}
+
+#idCheckBtn,
+#psCheckBtn {
+  margin-top: 10px;
+  position: relative;
+  left: 268px;
+}
+
+#signUp {
+  position: relative;
+  left: 270px;
+  top: 140px;
+}
+
+.green {
+  color: rgb(25, 185, 25);
+}
+
+.red {
+  color: #f76a3f;
+}
+
+.green,
+.red {
+  display: none;
+}

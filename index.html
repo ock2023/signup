@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignUp</title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <main>
+      <section class="container">
+        <form>
+          <h1>회원가입</h1>
+          <section class="form">
+            <div class="input-label">아이디</div>
+            <input
+              type="email"
+              class="input"
+              placeholder="이메일을 입력하세요"
+            />
+            <div class="green" id="id-available">사용가능한 아이디입니다.</div>
+            <div class="red" id="id-exists">
+              이미 존재하는 아이디입니다. 다른 아이디를 입력해주세요.
+            </div>
+            <button id="idCheckBtn">중복확인</button>
+            <div class="input-label">비밀번호</div>
+            <input
+              type="password"
+              class="input"
+              placeholder="비밀번호를 입력하세요"
+            />
+            <div class="green" id="password-available">사용가능합니다.</div>
+            <div class="red" id="password-guidance">
+              문자와 숫자, 특수문자를 포함하여 8자 이상 작성해주세요.
+            </div>
+            <div class="input-label">비밀번호 확인</div>
+            <input
+              type="password"
+              class="input"
+              placeholder="비밀번호를 다시 한 번 입력하세요"
+            />
+            <button id="psCheckBtn">비번확인</button>
+            <div class="red" id="password-mismatch">비밀번호가 다릅니다.</div>
+            <div class="input-label">생년월일</div>
+            <select class="birth" id="birthYearSelect"></select>
+            <select class="birth" id="birthMonthSelect"></select>
+            <select class="birth" id="birthDaySelect"></select>
+            <button id="signUp">가입하기</button>
+          </section>
+        </form>
+      </section>
+    </main>
+    <script src="signup.js"></script>
+  </body>
+</html>
