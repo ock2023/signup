@@ -80,16 +80,25 @@ button:hover {
 }
 
 #idCheckBtn,
-#psCheckBtn {
+#passCheckBtn {
   margin-top: 10px;
   position: relative;
   left: 268px;
 }
 
 #signUp {
+  height: 60px;
+  width: 80px;
+  border: solid 2px #d3aef8;
+  background-color: #d3aef8;
+  border-radius: 12px;
   position: relative;
   left: 270px;
   top: 140px;
+}
+
+#signUp:hover {
+  background-color: #9e76c5;
 }
 
 .green {

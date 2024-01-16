@@ -1,41 +1,123 @@
-const currentYear = new Date().getFullYear();
-const startYear = 1990;
-const birthYearSelect = document.getElementById("birthYearSelect");
-const birthMonthSelect = document.getElementById("birthMonthSelect");
-const birthDaySelect = document.getElementById("birthDaySelect");
+let idInfo = [];
 
-for (let year = currentYear; year >= startYear; year--) {
-  const yearOption = document.createElement("option");
-  yearOption.value = year;
-  yearOption.textContent = year;
-  birthYearSelect.append(yearOption);
-}
-for (let month = 1; month <= 12; month++) {
-  const monthOption = document.createElement("option");
-  monthOption.value = month;
-  monthOption.textContent = month;
-  birthMonthSelect.append(monthOption);
-}
+let idInput = document.getElementById("idInput");
+let passInput = document.getElementById("passwordInput");
+let passCheckInput = document.getElementById("passwordCheckInput");
 
-for (let day = 1; day <= 31; day++) {
-  const dayOption = document.createElement("option");
-  dayOption.value = day;
-  dayOption.textContent = day;
-  birthDaySelect.append(dayOption);
-}
+let idChecked = false;
+let passChecked = false;
 
-// 중복확인 버튼을 클릭했을 때,
-// 아이디가 중복이 없으면
-// document.getElementById("id-available").style.display = "block";
-// 중복이면
-// document.getElementById("id-exists").style.display = "block";
+const onChangeId = (e) => {
+  idInput.value = e.target.value;
+  // id 입력이 변경될 때마다 중복확인 상태를 false로 초기화
+  idChecked = false;
+};
 
-// 비밀번호를 입력했을 때,
-// 형식에 맞게 작성하면
-// document.getElementById("password-available").style.display = "block";
-// 형식에 맞지 않으면
-// document.getElementById("password-guidance").style.display = "block";
+const onChangePassword = (e) => {
+  passInput.value = e.target.value;
+  passChecked = false;
+  // 비밀번호 형식을 정규식으로 검증
+  const passwordFormat =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[.,@$!%*?&])[A-Za-z\d.,@$!%*?&]{8,}$/;
+  const isValidPassword = passwordFormat.test(passInput.value);
 
-// 비번확인 버튼 클릭했을 때,
-// 위에 입력한 비밀번호와 같지않으면
-// document.getElementById("password-mismatch").style.display = "block";
+  // 정규식에 맞게 작성하면 안내 문구를 띄우고, 맞지 않으면 안내 문구를 숨김
+  const passwordAvailable = document.getElementById("password-available");
+  const passwordGuidance = document.getElementById("password-guidance");
+  if (isValidPassword) {
+    passwordAvailable.style.display = "block";
+    passwordGuidance.style.display = "none";
+  } else {
+    passwordAvailable.style.display = "none";
+    passwordGuidance.style.display = "block";
+  }
+};
+
+const onChangePassCheck = (e) => {
+  passCheckInput.value = e.target.value;
+  passChecked = false;
+};
+
+const idAvailable = document.getElementById("id-available");
+const passMatch = document.getElementById("password-match");
+
+const onClickIdBtn = (e) => {
+  e.preventDefault();
+  const enteredId = idInput.value.trim();
+  const idExists = document.getElementById("id-exists");
+  const emailCheck = document.getElementById("email-check");
+
+  idExists.style.display = "none";
+  idAvailable.style.display = "none";
+  emailCheck.style.display = "none";
+
+  const emailFormat = /\S+@\S+\.\S+/;
+  if (emailFormat.test(idInput.value)) {
+    if (idInfo.includes(enteredId)) {
+      idExists.style.display = "block";
+    } else {
+      idAvailable.style.display = "block";
+      // 중복확인이 완료되면 상태를 true로 변경
+      idChecked = true;
+    }
+  } else {
+    emailCheck.style.display = "block";
+  }
+};
+
+const onClickPassBtn = (e) => {
+  e.preventDefault();
+  if (
+    passInput.value !== passCheckInput.value ||
+    passInput.value === "" ||
+    passCheckInput.value === ""
+  ) {
+    document.getElementById("password-mismatch").style.display = "block";
+    document.getElementById("password-match").style.display = "none";
+  } else if (passInput.value === passCheckInput.value) {
+    document.getElementById("password-mismatch").style.display = "none";
+    document.getElementById("password-match").style.display = "block";
+    // 비밀번호 확인이 완료되면 상태를 true로 변경
+    passChecked = true;
+  }
+};
+
+const onClickJoinBtn = (e) => {
+  e.preventDefault();
+
+  if (!idChecked) {
+    alert("아이디 중복확인을 해주세요.");
+    return;
+  }
+
+  if (!passChecked) {
+    alert("비밀번호 확인을 해주세요.");
+    return;
+  }
+
+  if (
+    idInput.value === "" ||
+    passInput.value === "" ||
+    passCheckInput.value === ""
+  ) {
+    alert("모든 칸을 채워주세요.");
+    return;
+  }
+  const enteredId = idInput.value.trim();
+  idInfo.push(enteredId);
+  console.log(idInfo);
+  idInput.value = "";
+  passInput.value = "";
+  passCheckInput.value = "";
+  idAvailable.style.display = "none";
+  passMatch.style.display = "none";
+};
+
+idInput.addEventListener("input", onChangeId);
+passInput.addEventListener("input", onChangePassword);
+passCheckInput.addEventListener("input", onChangePassCheck);
+document.getElementById("idCheckBtn").addEventListener("click", onClickIdBtn);
+document
+  .getElementById("passCheckBtn")
+  .addEventListener("click", onClickPassBtn);
+document.getElementById("signUp").addEventListener("click", onClickJoinBtn);
