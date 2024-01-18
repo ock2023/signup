@@ -6,7 +6,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 
 .container {
@@ -16,6 +15,9 @@ main {
   margin-bottom: 100px;
   height: 950px;
   width: 400px;
+  max-width: 100%; /* 부모요소보다 사이즈가 크지 않도록 */
+  height: auto; /*  내용물에 따라 높이가 조절되도록 */
+  box-sizing: border-box; /* 테두리와 내용의 크기를 함께 고려하도록 */
   border: solid 3px #f1bb79;
   border-radius: 12px;
 }
@@ -51,7 +53,7 @@ button {
 }
 
 .birth {
-  width: 109px;
+  width: 100px;
 }
 
 form {
@@ -86,15 +88,20 @@ button:hover {
   left: 268px;
 }
 
+.birthday {
+  display: flex;
+  justify-content: space-between;
+}
+
 #signUp {
   height: 60px;
   width: 80px;
   border: solid 2px #d3aef8;
   background-color: #d3aef8;
   border-radius: 12px;
-  position: relative;
-  left: 270px;
-  top: 140px;
+  margin-top: 70px;
+  margin-bottom: 50px;
+  margin-left: 278px;
 }
 
 #signUp:hover {
