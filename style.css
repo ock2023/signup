@@ -36,7 +36,7 @@ main {
 input:focus,
 .birth:focus {
   border: none;
-  outline: 2px solid #f76a3f;
+  outline: 2px solid #fda88e;
 }
 
 .input,

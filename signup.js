@@ -12,7 +12,8 @@ const onChangeId = (e) => {
   // id 입력이 변경될 때마다 중복확인 상태를 false로 초기화
   idChecked = false;
 };
-
+const passwordAvailable = document.getElementById("password-available");
+const passwordGuidance = document.getElementById("password-guidance");
 const onChangePassword = (e) => {
   passInput.value = e.target.value;
   passChecked = false;
@@ -22,8 +23,7 @@ const onChangePassword = (e) => {
   const isValidPassword = passwordFormat.test(passInput.value);
 
   // 정규식에 맞게 작성하면 안내 문구를 띄우고, 맞지 않으면 안내 문구를 숨김
-  const passwordAvailable = document.getElementById("password-available");
-  const passwordGuidance = document.getElementById("password-guidance");
+
   if (isValidPassword) {
     passwordAvailable.style.display = "block";
     passwordGuidance.style.display = "none";
@@ -110,6 +110,7 @@ const onClickJoinBtn = (e) => {
   passInput.value = "";
   passCheckInput.value = "";
   idAvailable.style.display = "none";
+  passwordAvailable.style.display = "none";
   passMatch.style.display = "none";
 };
 
