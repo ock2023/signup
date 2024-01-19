@@ -17,12 +17,10 @@ const passwordGuidance = document.getElementById("password-guidance");
 const onChangePassword = (e) => {
   passInput.value = e.target.value;
   passChecked = false;
-  // 비밀번호 형식을 정규식으로 검증
+
   const passwordFormat =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[.,@$!%*?&])[A-Za-z\d.,@$!%*?&]{8,}$/;
   const isValidPassword = passwordFormat.test(passInput.value);
-
-  // 정규식에 맞게 작성하면 안내 문구를 띄우고, 맞지 않으면 안내 문구를 숨김
 
   if (isValidPassword) {
     passwordAvailable.style.display = "block";
@@ -57,7 +55,7 @@ const onClickIdBtn = (e) => {
       idExists.style.display = "block";
     } else {
       idAvailable.style.display = "block";
-      // 중복확인이 완료되면 상태를 true로 변경
+
       idChecked = true;
     }
   } else {
@@ -77,7 +75,7 @@ const onClickPassBtn = (e) => {
   } else if (passInput.value === passCheckInput.value) {
     document.getElementById("password-mismatch").style.display = "none";
     document.getElementById("password-match").style.display = "block";
-    // 비밀번호 확인이 완료되면 상태를 true로 변경
+
     passChecked = true;
   }
 };
